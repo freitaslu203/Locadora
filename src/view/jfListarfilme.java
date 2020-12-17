@@ -87,7 +87,7 @@ public class jfListarfilme extends JFrame {
 				//verificar se há linha selecionada
 				if(jfListarfilme.getSelectedRow()!= -1) {
 					jfAtualizaFilme af = new jfAtualizaFilme(
-							(int)filme.getValueAt(filme.getSelectedRow(), 0));
+							(int)jtfilme.getValueAt(jtfilme.getSelectedRow(), 0));
 					af.setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null, "Selecione um filme!");

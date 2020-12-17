@@ -161,11 +161,18 @@ public class jfAtualizaFilme extends JFrame {
 	
 			
 		
-		JButton btncadastrar = new JButton("Alterar");
-		btncadastrar.addActionListener(new ActionListener() {
+		JButton btnalterar = new JButton("Alterar");
+		btnalterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				filme f = new filme();
 				FilmeDAO dao = new FilmeDAO();
+				
+				
+				f.setIdFilme(Integer.parseInt(lblid.getText()));
+				
+				
+				
+				
 				f.setTitulo(titulo.getText());
 				f.setSinopse(sinopse.getText());
 				f.setCategoria(categoria.getText());
@@ -178,13 +185,13 @@ public class jfAtualizaFilme extends JFrame {
 				if(dublado.isSelected()) {
 					f.setDublado(true);
 				}
-				dao.create(f);
+				dao.update(f);
 			}
 
 	});
-		btncadastrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btncadastrar.setBounds(12, 334, 89, 23);
-		contentPane.add(btncadastrar);
+		btnalterar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnalterar.setBounds(12, 334, 89, 23);
+		contentPane.add(btnalterar);
 		
 
 		JButton btnlimpar = new JButton("Limpar");
