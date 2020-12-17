@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -16,11 +18,14 @@ import model.bin.filme;
 import model.dao.FilmeDAO;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class jfListarfilme extends JFrame {
 
 	private JPanel contentPane;
 	private JTable jtfilme;
+	private static int id;
 
 	/**
 	 * Launch the application.
@@ -75,7 +80,21 @@ public class jfListarfilme extends JFrame {
 		btncadastrar.setBounds(20, 296, 120, 23);
 		contentPane.add(btncadastrar);
 		
-		JButton btnalterar = new JButton("Alterar Filme");
+		JButton btnalterar = new JButton("Alterar");
+		btnalterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//verificar se há linha selecionada
+				if(jfListarfilme.getSelectedRow()!= -1) {
+					jfAtualizaFilme af = new jfAtualizaFilme(
+							(int)filme.getValueAt(filme.getSelectedRow(), 0));
+					af.setVisible(true);
+				}else {
+					JOptionPane.showMessageDialog(null, "Selecione um filme!");
+				}
+				readJTable();
+			}
+		});
 		btnalterar.setBounds(162, 296, 120, 23);
 		contentPane.add(btnalterar);
 		
@@ -84,20 +103,22 @@ public class jfListarfilme extends JFrame {
 		contentPane.add(btnexcluir);
 		readJTable ();
 	}
-	public  void  readJTable () {
-		DefaultTableModel modelo = ( DefaultTableModel ) jtfilme . getModel ();
-		modelo . setNumRows ( 0 );
-		FilmeDAO fdao =  new  FilmeDAO ();
-		for ( filme f : fdao . read ()) {
-			modelo . addRow ( new  Object [] {
-					f . getIdFilme (),
-					f . getTitulo (),
-					f . getCategoria (),
-					f . getTempo ()
-			});
-		}
-		
+	protected static int getSelectedRow() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
-	
+
+	public  void  readJTable () {
+		DefaultTableModel modelo = ( DefaultTableModel ) jtfilme.getModel ();
+		modelo.setNumRows ( 0 );
+		FilmeDAO fdao =  new  FilmeDAO ();
+		for ( filme f : fdao.read ()) {
+			modelo . addRow ( new  Object [] {
+					f.getIdFilme (),
+					f.getTitulo (),
+					f.getCategoria (),
+					f.getTempo ()
+			});
+		}	
+	}
 }
