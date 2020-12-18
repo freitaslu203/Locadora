@@ -13,15 +13,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import  model.bin.usuario ;
-import  model.dao.UsuarioDAO ;
+import  model.bin.usuario;
+import  model.dao.UsuarioDAO;
+
+
 public class jfAtualizaUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private  JTextField nome;
 	private  JTextField email;
 	private  JTextField senha;
-
 	private  static  int id;
 	/**
 	 * Launch the application.
@@ -100,23 +101,36 @@ public class jfAtualizaUsuario extends JFrame {
 		contentPane.add(senha);
 		senha.setColumns(10);
 		
+		
 		JButton btnalterar = new JButton("Alterar");
 		
 		btnalterar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
+				
 				usuario u = new usuario();
 				UsuarioDAO dao = new UsuarioDAO();
+				
+				u.setIdUsuario(Integer.parseInt(lblId.getText()));
 				u.setNome(nome.getText());
 				u.setEmail(email.getText());
 				u.setSenha(senha.getText());
 				
 				
-				dao.create(u);
+				dao.update(u);
 			}
 		});
 		
 		btnalterar.setBounds(229, 325, 89, 23);
 		contentPane.add(btnalterar);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.setBounds(137, 400, 89, 23);
+		contentPane.add(btnLimpar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(269, 400, 89, 23);
+		contentPane.add(btnCancelar);
+		
 	}
 
 

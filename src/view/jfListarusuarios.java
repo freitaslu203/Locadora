@@ -86,12 +86,12 @@ public class jfListarusuarios extends JFrame {
 				
 							
 				//verificar se há linha selecionada
-				if(jfListarusuarios.getSelectedRow()!= -1) {
+				if(jttable.getSelectedRow()!= -1) {
 					jfAtualizaUsuario au = new jfAtualizaUsuario(
 							(int)jttable.getValueAt(jttable.getSelectedRow(), 0));
 					au.setVisible(true);
 				}else {
-					JOptionPane.showMessageDialog(null, "Selecione um filme!");
+					JOptionPane.showMessageDialog(null, "Selecione um usuário!");
 				}
 				readJTable();
 			}
