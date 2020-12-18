@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,6 +20,8 @@ import model.dao.FilmeDAO;
 import model.dao.UsuarioDAO;
 
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class jfListarusuarios extends JFrame {
 
@@ -77,6 +81,22 @@ public class jfListarusuarios extends JFrame {
 		contentPane.add(btncadastrar);
 		
 		JButton btneditar = new JButton("Editar Usu\u00E1rio");
+		btneditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+							
+				//verificar se há linha selecionada
+				if(jfListarusuarios.getSelectedRow()!= -1) {
+					jfAtualizaUsuario au = new jfAtualizaUsuario(
+							(int)jttable.getValueAt(jttable.getSelectedRow(), 0));
+					au.setVisible(true);
+				}else {
+					JOptionPane.showMessageDialog(null, "Selecione um filme!");
+				}
+				readJTable();
+			}
+		});
+		
 		btneditar.setBounds(205, 337, 123, 23);
 		contentPane.add(btneditar);
 		

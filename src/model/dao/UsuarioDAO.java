@@ -62,4 +62,52 @@ public class UsuarioDAO {
 			return usuario;
 		}
 
+		public usuario read(int idUsuario) {
+			Connection con = ConnectionFactory.getConnection();
+			PreparedStatement stmt = null;
+			ResultSet rs = null;
+			usuario u = new usuario();
+			try {
+				stmt = con.prepareStatement("SELECT * FROM usuario WHERE idUsuario=? LIMIT 1;");
+				stmt.setInt(1, idUsuario);
+				rs = stmt.executeQuery();
+				if(rs != null && rs.next()) {
+					u.setIdUsuario(rs.getInt("idUsuario"));
+					u.setNome(rs.getString("nome"));
+					u.setEmail(rs.getString("email"));
+					u.setSenha(rs.getString("senha"));
+					
+				}		
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionFactory.closeConnection(con, stmt, rs);
+			}
+			return u;
+		}
+		
+
+	public  void  update ( usuario  u ) {
+		Connection  con =  ConnectionFactory . getConnection ();
+		PreparedStatement stmt =  null ;
+		
+		try {
+			stmt = con . prepareStatement ( " UPDATE usuario SET nome = ?, email = ?, senhaa = ?"
+					+ " WHERE idUsuario = ?; " );
+			stmt.setString ( 1 , u.getNome ());
+			stmt.setString ( 2 , u.getEmail ());
+			stmt.setString ( 3 , u.getSenha ());
+			stmt.setInt ( 7 , u.getIdUsuario());
+			stmt.executeUpdate ();
+			JOptionPane . showMessageDialog ( null , " Usuário atualizado com sucesso! " );
+		} catch ( SQLException e) {
+			JOptionPane . showMessageDialog ( null , " Erro ao atualizar: " + e);
+		} finally {
+			ConnectionFactory . closeConnection (con, stmt);
+		}
 	}
+	
+}
+		
+
+	
