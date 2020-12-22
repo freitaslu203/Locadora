@@ -29,7 +29,7 @@ public class jfListarusuarios extends JFrame {
 	private JTable jttable;
 
 	/**
-	 * Launch the application.
+	 * ok
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

@@ -67,6 +67,7 @@ public class UsuarioDAO {
 			PreparedStatement stmt = null;
 			ResultSet rs = null;
 			usuario u = new usuario();
+			
 			try {
 				stmt = con.prepareStatement("SELECT * FROM usuario WHERE idUsuario=? LIMIT 1;");
 				stmt.setInt(1, idUsuario);
@@ -92,12 +93,12 @@ public class UsuarioDAO {
 		PreparedStatement stmt =  null ;
 		
 		try {
-			stmt = con . prepareStatement ( " UPDATE usuario SET nome = ?, email = ?, senhaa = ?"
+			stmt = con . prepareStatement ( " UPDATE usuario SET nome = ?, email = ?, senha = ?"
 					+ " WHERE idUsuario = ?; " );
 			stmt.setString ( 1 , u.getNome ());
 			stmt.setString ( 2 , u.getEmail ());
 			stmt.setString ( 3 , u.getSenha ());
-			stmt.setInt ( 7 , u.getIdUsuario());
+			stmt.setInt ( 4 , u.getIdUsuario());
 			stmt.executeUpdate ();
 			JOptionPane . showMessageDialog ( null , " Usuário atualizado com sucesso! " );
 		} catch ( SQLException e) {

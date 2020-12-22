@@ -44,6 +44,7 @@ public class jfAtualizaUsuario extends JFrame {
 	 * Create the frame.
 	 */
 	public jfAtualizaUsuario(int id) {
+		setTitle("Alterar Filme");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 620, 424);
 		contentPane = new JPanel();
@@ -52,7 +53,7 @@ public class jfAtualizaUsuario extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		JLabel cadusuario = new JLabel("Alterar Usu\u00E1rio");
+		JLabel cadusuario = new JLabel("Alterar Usuario");
 		cadusuario.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		cadusuario.setBounds(196, 11, 233, 43);
 		contentPane.add(cadusuario);
@@ -101,7 +102,12 @@ public class jfAtualizaUsuario extends JFrame {
 		contentPane.add(senha);
 		senha.setColumns(10);
 		
+		lblId.setText(String.valueOf(u.getIdUsuario()));
+		nome.setText(u.getNome());
+		email.setText(u.getEmail());
+		senha.setText(u.getSenha());
 		
+	
 		JButton btnalterar = new JButton("Alterar");
 		
 		btnalterar.addActionListener(new ActionListener() {
