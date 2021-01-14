@@ -82,9 +82,9 @@ public class jfListarfilme extends JFrame {
 		
 		JButton btnalterar = new JButton("Alterar");
 		btnalterar.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
-				
-				//verificar se há linha selecionada
+					// verificar se há linha selecionada
 				if(jfListarfilme.getSelectedRow()!= -1) {
 					jfAtualizaFilme af = new jfAtualizaFilme(
 							(int)jtfilme.getValueAt(jtfilme.getSelectedRow(), 0));
@@ -95,10 +95,29 @@ public class jfListarfilme extends JFrame {
 				readJTable();
 			}
 		});
+		
 		btnalterar.setBounds(162, 296, 120, 23);
 		contentPane.add(btnalterar);
 		
 		JButton btnexcluir = new JButton("Excluir Filme");
+		btnexcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				if(jtfilme.getSelectedRow()!= -1) {
+					int opcao = JOptionPane.showConfirmDialog(null, "Deseja excluir o filme selecionado?"
+							,"Exclusão",JOptionPane.YES_NO_OPTION);
+					if (opcao == 0) {
+						FilmeDAO dao = new FilmeDAO();
+						filme f = new filme();
+						f.setIdFilme((int) jtfilme.getValueAt(jtfilme.getSelectedRow(), 0));
+						dao.delete(f);
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Selecione um filme!");
+				}
+				readJTable();
+			}
+		});
 		btnexcluir.setBounds(311, 296, 114, 23);
 		contentPane.add(btnexcluir);
 		readJTable ();
