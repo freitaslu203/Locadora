@@ -101,6 +101,23 @@ public class jfListarusuarios extends JFrame {
 		contentPane.add(btneditar);
 		
 		JButton btnexcluir = new JButton("Excluir Usu\u00E1rio");
+		btnexcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(jttable.getSelectedRow()!= -1) {
+					int opcao = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário selecionado?"
+							,"Exclusão",JOptionPane.YES_NO_OPTION);
+					if (opcao == 0) {
+						UsuarioDAO dao = new UsuarioDAO();
+						usuario u = new usuario();
+						u.setIdUsuario((int) jttable.getValueAt(jttable.getSelectedRow(), 0));
+						dao.delete(u);
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Selecione um Usuário!");
+				}
+				readJTable();
+			}
+		});
 		btnexcluir.setBounds(384, 337, 123, 23);
 		contentPane.add(btnexcluir);
 		
