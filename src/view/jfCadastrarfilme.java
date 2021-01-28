@@ -47,7 +47,7 @@ public class jfCadastrarfilme extends JFrame {
 	}
 
 	public jfCadastrarfilme() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 607, 407);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -142,6 +142,7 @@ public class jfCadastrarfilme extends JFrame {
 					f.setDublado(true);
 				}
 				dao.create(f);
+				dispose();
 			}
 
 	});
@@ -151,11 +152,26 @@ public class jfCadastrarfilme extends JFrame {
 		
 
 		JButton btnlimpar = new JButton("Limpar");
+		btnlimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				titulo.setText(null);
+				sinopse.setText(null);
+				categoria.setText(null);
+				tempo.setValue(0);
+				imagem.clearSelection();
+				audio.clearSelection();
+			}
+		});
 		btnlimpar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnlimpar.setBounds(121, 334, 89, 23);
 		contentPane.add(btnlimpar);
 		
 		JButton btncancelar = new JButton("Cancelar");
+		btncancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btncancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btncancelar.setBounds(225, 334, 89, 23);
 		contentPane.add(btncancelar);

@@ -121,6 +121,9 @@ public class jfAtualizaUsuario extends JFrame {
 				u.setEmail(email.getText());
 				u.setSenha(senha.getText());
 				
+				nome.setText(null);
+				email.setText(null);
+				senha.setText(null);
 				
 				dao.update(u);
 			}

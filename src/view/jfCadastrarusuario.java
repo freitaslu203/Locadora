@@ -100,11 +100,22 @@ import model.dao.UsuarioDAO;
 				
 				
 				dao.create(u);
+				dispose();
 			}
 		});
 		
 		btncadastrar.setBounds(229, 325, 89, 23);
 		contentPane.add(btncadastrar);
+		
+		JButton limpar = new JButton("Limpar");
+		limpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				nome.setText(null);
+				email.setText(null);
+				senha.setText(null);
+			}
+		});
+		limpar.setBounds(340, 325, 89, 23);
+		contentPane.add(limpar);
 	}
-
 }

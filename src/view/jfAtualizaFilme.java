@@ -186,6 +186,7 @@ public class jfAtualizaFilme extends JFrame {
 					f.setDublado(true);
 				}
 				dao.update(f);
+				dispose();
 			}
 
 	});
@@ -195,6 +196,16 @@ public class jfAtualizaFilme extends JFrame {
 		
 
 		JButton btnlimpar = new JButton("Limpar");
+		btnlimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				titulo.setText(null);
+				sinopse.setText(null);
+				categoria.setText(null);
+				tempo.setValue(0);
+				imagem.clearSelection();
+				audio.clearSelection();
+			}
+		});
 		btnlimpar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnlimpar.setBounds(121, 334, 89, 23);
 		contentPane.add(btnlimpar);
@@ -203,8 +214,6 @@ public class jfAtualizaFilme extends JFrame {
 		btncancelar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btncancelar.setBounds(225, 334, 89, 23);
 		contentPane.add(btncancelar);
-		
-		
 		
 	}
 }

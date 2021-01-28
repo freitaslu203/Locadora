@@ -22,6 +22,8 @@ import model.dao.UsuarioDAO;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.WindowEvent;
 
 public class jfListarusuarios extends JFrame {
 
@@ -48,6 +50,13 @@ public class jfListarusuarios extends JFrame {
 	 * Create the frame.
 	 */
 	public jfListarusuarios() {
+		addWindowFocusListener(new WindowFocusListener() {
+			public void windowGainedFocus(WindowEvent e) {
+				readJTable();
+			}
+			public void windowLostFocus(WindowEvent e) {
+			}
+		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 594, 426);
 		contentPane = new JPanel();
@@ -77,6 +86,12 @@ public class jfListarusuarios extends JFrame {
 		scrollPane.setViewportView(jttable);
 		
 		JButton btncadastrar = new JButton("Cadastrar Usu\u00E1rio");
+		btncadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jfCadastrarusuario cu = new jfCadastrarusuario();
+				cu.setVisible(true);	
+			}
+		});
 		btncadastrar.setBounds(30, 337, 131, 23);
 		contentPane.add(btncadastrar);
 		
